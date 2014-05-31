@@ -16,6 +16,21 @@ class Book(BaseModel):
     class Meta:
         db_table = 'book'
 
+class Info(BaseModel):
+    data = DateField(db_column='Data')
+    godz = CharField(max_length=10, db_column='Godz')
+    kod = CharField(max_length=10, db_column='Kod')
+    kodowanie = TextField(db_column='Kodowanie')
+    konto = TextField(db_column='Konto')
+    miasto = TextField(db_column='Miasto')
+    nazwa = TextField(db_column='Nazwa')
+    nip = CharField(max_length=20, db_column='Nip')
+    program = TextField(db_column='Program')
+    id = BigIntegerField(primary_key=True)
+
+    class Meta:
+        db_table = 'info'
+
 class Paragony(BaseModel):
     adreskontrahenta = CharField(max_length=100, db_column='AdresKontrahenta')
     bon = FloatField(db_column='Bon')
