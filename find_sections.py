@@ -15,6 +15,7 @@ def returnKeyValueFromString(string):
 	return record
 
 def returnDictFromFile():
+	"""Return Info dict from edi.txt file"""
 	Info = {}
 	with open('edi.txt') as line:
 		for s in line:
