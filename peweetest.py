@@ -1,4 +1,5 @@
 import peewee
+import find_sections
 from peewee import *
 
 db = MySQLDatabase('baza_test_python', user='bazek',passwd='ve7128')
@@ -25,10 +26,19 @@ class Info(peewee.Model):
     class Meta:
         database = db
 
-info = Info(program="SMALL", kodowanie="Windows")
-info.save()
-for info in Info.filter(program="SMALL BUSINESS 5.1.3021.4980"):
-	print info.Kodowanie
+fields = find_sections.returnDictFromFile()
+#fields={'godz': ' 9:05:00', 'konto': '', 'program': 'SMALL BUSINESS 5.1.3021.4980', 'nazwa': 'RZEPKA Pruszowice ul.Sloneczna 13          tel.071 31 54 603, e-mail: wkn@wp.pl', 'nip': '911-167-70-58', 'data': '14.04.24', 'kod': '51-217', 'kodowanie': 'Windows 1250', 'miasto': 'Pruszowice'}
+
+sq = Info.insert_many([fields])
+sq.execute()
+print fields
+#iq = InsertQuery(Info, fields)
+#iq.execute()
+
+#info = Info(program="SMALL", kodowanie="Windows")
+#info.save()
+#for info in Info.filter(program="SMALL BUSINESS 5.1.3021.4980"):
+#	print info.Kodowanie
 
 
 #Book.create_table()
