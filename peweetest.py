@@ -23,6 +23,7 @@ class Info(peewee.Model):
 fields = find_sections.returnDictFromFile()
 #fields={'godz': ' 9:05:00', 'konto': '', 'program': 'SMALL BUSINESS 5.1.3021.4980', 'nazwa': 'RZEPKA Pruszowice ul.Sloneczna 13          tel.071 31 54 603, e-mail: wkn@wp.pl', 'nip': '911-167-70-58', 'data': '14.04.24', 'kod': '51-217', 'kodowanie': 'Windows 1250', 'miasto': 'Pruszowice'}
 
+
 sq = Info.insert_many([fields])
 sq.execute()
 print fields
