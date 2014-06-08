@@ -3,7 +3,7 @@ import find_between
 import re
 
 def returnKeyValueFromString(string):
-	"""Return record key,value from line with '=' separator"""
+	"""Return record key,value from line with string contain '=' separator"""
 	record = {}
 	name, value = string.partition("=")[::2]
         name = name.lower()
@@ -19,6 +19,7 @@ def returnDictFromFile():
 	Info = {}
 	Okres = {}
 	Dokument = {}
+	Dokument['identyfikatordok']=0
 	with open('edi.txt') as line:
 		for s in line:
             		#if s.strip() == '[Dokument]':
@@ -29,15 +30,23 @@ def returnDictFromFile():
 				#print (vars()[name])
 				if name == 'Dokument':
                                 	print u'Here we are in Dokument dict'
-
+				if name == 'ZawartoscDokumentu':
+					print 'Push Dokument dict as record to sql database'
+				if re.match("\[Poz",s):
+					print "Start make 'Poz' dict" 
 	    		else:
 				if s == '\r\n':
 					pass
-				else: vars()[name].update(returnKeyValueFromString(s))
+				else: 
+					vars()[name].update(returnKeyValueFromString(s))
+					if Dokument['identyfikatordok']:
+						docId = Dokument['identyfikatordok']
 			if s == '[Dokument]/r/n':
+				documentId = Dokument['IdentyfikatorDok']
 				print u'Here we are in Dokument dict'
+				print  documentId
 	print 'Info dict is'
-	print Dokument
+	print Dokument['identyfikatordok']
 	print Okres
 	return Info
 
