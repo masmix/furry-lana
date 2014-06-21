@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 import find_between
 import re
+import peweetest
 
 def returnKeyValueFromString(string):
 	"""Return record key,value from line with string contain '=' separator"""
@@ -28,7 +29,10 @@ def returnDictFromFile():
 			print s	#if s.strip() == '[Dokument]':
 	    		
 			if re.match("\[",s):
-				print (vars()[name])
+				#print (vars()[name])
+				#print dir(vars()[name])
+				
+				peweetest.pushFieldToDatabase(name,vars()[name])
 				name = find_between.find_between(s,'[',']')
 				
 				vars()[name] = {} 			
