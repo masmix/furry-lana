@@ -20,18 +20,24 @@ def returnDictFromFile():
 	Okres = {}
 	Dokument = {}
 	Dokument['identyfikatordok']=0
+	name = 'start'
+	start = {}
 	with open('edi.txt') as line:
 		for s in line:
-            		#if s.strip() == '[Dokument]':
-	    		if re.match("\[",s):
+            		
+			print s	#if s.strip() == '[Dokument]':
+	    		
+			if re.match("\[",s):
+				print (vars()[name])
 				name = find_between.find_between(s,'[',']')
-				#print name
+				
 				vars()[name] = {} 			
 				#print (vars()[name])
 				if name == 'Dokument':
                                 	print u'Here we are in Dokument dict'
 				if name == 'ZawartoscDokumentu':
 					print 'Push Dokument dict as record to sql database'
+					print Dokument
 				if re.match("\[Poz",s):
 					print "Start make 'Poz' dict" 
 	    		else:
@@ -41,10 +47,11 @@ def returnDictFromFile():
 					vars()[name].update(returnKeyValueFromString(s))
 					if Dokument['identyfikatordok']:
 						docId = Dokument['identyfikatordok']
-			if s == '[Dokument]/r/n':
-				documentId = Dokument['IdentyfikatorDok']
-				print u'Here we are in Dokument dict'
-				print  documentId
+						print docId
+			#if s == '[Dokument]/r/n':
+			#	documentId = Dokument['IdentyfikatorDok']
+		#		print u'Here we are in Dokument dict'
+		#		print  documentId
 	print 'Info dict is'
 	print Dokument['identyfikatordok']
 	print Okres
