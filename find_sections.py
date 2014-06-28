@@ -21,8 +21,8 @@ def returnDictFromFile():
 	Okres = {}
 	Dokument = {}
 	Dokument['identyfikatordok']=0
-	name = 'start'
-	start = {}
+	name = 'Start'
+	Start = {"start": "1"}
 	with open('edi.txt') as line:
 		for s in line:
             		
