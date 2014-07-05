@@ -32,26 +32,38 @@ def returnDictFromFile():
 				#print (vars()[name])
 				#print dir(vars()[name])
 				
-				peweetest.pushFieldToDatabase(name,vars()[name])
+				#peweetest.pushFieldToDatabase(name,vars()[name])
 				name = find_between.find_between(s,'[',']')
 				
-				vars()[name] = {} 			
+				#vars()[name] = {} 			
 				#print (vars()[name])
+				if name == 'Info':
+					Info = {}
+					current_table = Info
+				if name == 'Okres':
+					Okres = {}
+					current_table = Okres
 				if name == 'Dokument':
-                                	print u'Here we are in Dokument dict'
+					Dokument = {}
+					current_table = Dokument
 				if name == 'ZawartoscDokumentu':
-					print 'Push Dokument dict as record to sql database'
+					table_name = 'Paragony' 
 					print Dokument
+					peweetest.pushFieldToDatabase(table_name,Dokument)
+					print 'Push Dokument dict as record to sql database'
+					#print Dokument
 				if re.match("\[Poz",s):
+					poz = {}
+					current_table = poz
 					print "Start make 'Poz' dict" 
 	    		else:
 				if s == '\r\n':
 					pass
 				else: 
-					vars()[name].update(returnKeyValueFromString(s))
-					if Dokument['identyfikatordok']:
-						docId = Dokument['identyfikatordok']
-						print docId
+					current_table.update(returnKeyValueFromString(s))
+					#if Dokument['identyfikatordok']:
+					#	docId = Dokument['identyfikatordok']
+					#	print docId
 			#if s == '[Dokument]/r/n':
 			#	documentId = Dokument['IdentyfikatorDok']
 		#		print u'Here we are in Dokument dict'

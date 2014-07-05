@@ -27,13 +27,14 @@ class Info(peewee.Model):
 
 class Okres(peewee.Model):
     poczatek = CharField(max_length=45, null=True, db_column='Poczatek')
-    datawyst = CharField(max_length=45, null=True, db_column='Koniec')
+    koniec = CharField(max_length=45, null=True, db_column='Koniec')
 
     class Meta:
 	database = db
 
 
 class Paragony(peewee.Model):
+    rejestr = CharField(max_length=20, db_column='Rejestr')
     adreskontrahenta = CharField(max_length=100, db_column='AdresKontrahenta')
     bon = FloatField(db_column='Bon')
     brutto = FloatField(db_column='Brutto')
@@ -56,6 +57,7 @@ class Paragony(peewee.Model):
     nrpar = CharField(max_length=30, db_column='NrPar')
     nrplatnosci = IntegerField(db_column='NrPlatnosci')
     sposobplatnosci = CharField(max_length=30, db_column='SposobPlatnosci')
+    standok = IntegerField(db_column='standok')
     symbolkontrahenta = CharField(max_length=30, db_column='SymbolKontrahenta')
     termin = IntegerField(db_column='Termin')
     typdok = CharField(max_length=45, null=True, db_column='TypDok')
@@ -80,6 +82,24 @@ class Paragony(peewee.Model):
     vat1_stawka = CharField(max_length=10, db_column='Vat1_Stawka')
     vat1_vat = FloatField(db_column='Vat1_Vat')
     vat1_vatzakup = FloatField(db_column='Vat1_VatZakup')
+    vat2_brutto = FloatField(db_column='Vat2_Brutto')
+    vat2_bruttozakup = FloatField(db_column='Vat2_BruttoZakup')
+    vat2_index = IntegerField(db_column='Vat2_Index')
+    vat2_netto = FloatField(db_column='Vat2_Netto')
+    vat2_nettozakup = FloatField(db_column='Vat2_NettoZakup')
+    vat2_procent = IntegerField(db_column='Vat2_Procent')
+    vat2_stawka = CharField(max_length=10, db_column='Vat2_Stawka')
+    vat2_vat = FloatField(db_column='Vat2_Vat')
+    vat2_vatzakup = FloatField(db_column='Vat2_VatZakup')
+    vat3_brutto = FloatField(db_column='Vat3_Brutto')
+    vat3_bruttozakup = FloatField(db_column='Vat3_BruttoZakup')
+    vat3_index = IntegerField(db_column='Vat3_Index')
+    vat3_netto = FloatField(db_column='Vat3_Netto')
+    vat3_nettozakup = FloatField(db_column='Vat3_NettoZakup')
+    vat3_procent = IntegerField(db_column='Vat3_Procent')
+    vat3_stawka = CharField(max_length=10, db_column='Vat3_Stawka')
+    vat3_vat = FloatField(db_column='Vat3_Vat')
+    vat3_vatzakup = FloatField(db_column='Vat3_VatZakup')
     wartwcenachzakupunetto = FloatField(db_column='WartWCenachZakupuNetto')
     
     class Meta:
